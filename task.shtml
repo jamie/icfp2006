@@ -1,0 +1,125 @@
+<html>
+<body>
+<h1>An Urgent Appeal</h1>
+
+<p>
+Dear Colleague:
+</p>
+
+<p>
+In 1967, during excavation for the construction of a new shopping
+center in Monroeville, Pennsylvania, workers uncovered a vault
+containing a cache of ancient scrolls.  Most were severely damaged,
+but those that could be recovered confirmed the existence of a secret
+society long suspected to have been active in the region around the
+year 200 BC.
+</p>
+
+<p>
+Based on a translation of these documents, we now know that the
+society, the Cult of the Bound Variable, was devoted to the careful
+study of computation, over two millennia before the invention of the
+digital computer.
+</p>
+
+<p>
+While the Monroeville scrolls make reference to computing machines
+made of sandstone, most researchers believed this to be a poetic
+metaphor and that the "computers" were in fact the initiates
+themselves, carrying out the unimaginably tedious steps of their
+computations with reed pens on parchment.  A few have conjectured a
+city-sized machine powered by falling sand, but no physical evidence
+of such a device has been discovered.
+</p>
+
+<p>
+Among the documents found intact in the Monroeville collection was a
+lengthy codex, written in no known language and inscribed with
+superhuman precision.  It is believed to be the masterwork of the
+Cult's scholarship, and as such it carries immense potential to
+advance our understanding of history&#8212;and possibly of computing as
+well.  Unfortunately, the codex eluded interpretation, and over the
+decades, study of the Monroeville scrolls has slipped into obscurity.
+Since 1978, the codex has been stored in the basement of the Carnegie
+Museum of Natural History.
+</p>
+
+<img src="task_files/spec.png" style="padding: 4px 0px 4px 12px; float: right;">
+<p>
+Two weeks ago, during a visit to the excavation site for a new
+computer science building at CMU, workers discovered a set of
+inscribed tablets that proved to be the Rosetta Stone for interpreting
+the Monroeville codex.  The tablets precisely specify the Cult's
+computing device, known to initiates as the "Universal Machine."
+Although there is still no evidence that the cult succeeded in
+constructing their machine, it is a reasonably simple task to emulate
+it on modern hardware.
+</p>
+
+<p>
+We can now say with certainty that the codex is in fact a program,
+intended for execution on the Universal Machine.  Our initial
+exploration of the codex suggests that the Cult's ideas about
+programming were very sophisticated, if somewhat peculiar to the
+modern eye.  One cannot help but wonder what the Cult might have
+achieved had they had access to modern electronics and type theory.
+</p>
+
+<p>
+I have enlisted the help of the CMU Principles of Programming group in
+creating a venue for study of the codex.  We invite you to participate
+in this investigation.  The codex and a translation of the Universal
+Machine (UM) specification are available for <a href="#materials">download</a> from our web site.  We encourage you to
+implement the UM and begin your own exploration of the codex.
+</p>
+
+<p>
+The Cult's scholarly publications are of particular interest to us.
+Because the Cult's journals were circulated on sandstone tablets,
+editors imposed very strict length limitations.  Consequently, authors
+aggressively compressed their articles.  A typical publication would
+have the following form:
+</p>
+
+<center><span class="publication">PUZZL.TSK=100@1001|14370747643c6d2db0a40ecb4b0bb65</span></center>
+
+<p>
+Should you encounter any such publications, we humbly request that you
+<a href="http://www.icfpcontest.org/submit.shtml">submit them</a> to
+us via our web site. Our server will track all submitted publications,
+ensuring that every participant is given appropriate credit for
+advancing our understanding of the codex.  Publications are of varying
+value; some will represent a greater contribution than others, and we
+will take this into account when assigning credit.
+</p>
+
+<p>
+On a personal note, being inspired by the scholarship of the
+Cult, I have decided to dedicate the remainder of my days to a solitary
+study of computation and programming languages.  However, before
+embarking on my monastic transformation, I wish to see that the
+world is well on its way to uncovering the secrets of the Codex.
+</p>
+
+<p>
+Therefore, I ask that you submit as many publications as you can by
+noon EDT on July 24, 2006, at which time I will be taking my orders.
+My colleagues in the CMU POP group assure me that at that time, the
+teams that have made the greatest contribution to the effort shall be
+identified for special recognition.
+</p>
+
+<p>
+Good luck and thank you for your assistance.
+</p>
+
+
+<p>
+Sincerely,<br>
+<br>
+Professor Emeritus Harry Q. Bovik<br>
+Computational Archaeolinguistics Institute<br>
+Carnegie Mellon University<br>
+</p>
+</body>
+</html>
