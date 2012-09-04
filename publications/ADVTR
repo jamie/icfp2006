@@ -1,0 +1,71 @@
+howie
+xyzzy
+adventure
+north
+get bolt
+get spring
+inc spring
+get button
+get processor
+get pill
+get radio
+get cache
+c cache with processor
+get blue transistor
+c transistor with radio
+get antenna
+inc antenna
+get screw
+inc pill
+get motherboard
+c screw with motherboard
+get A-1920-IXB
+c bolt with A-1920-IXB
+c processor with A-1920-IXB
+c radio with A-1920-IXB
+get red transistor
+c transistor with A-1920-IXB
+c A-1920-IXB with motherboard
+get keypad
+c button with keypad
+c motherboard with keypad
+south
+(missing: trash, manifesto, pamphlet)
+use keypad
+
+
+exit
+
+
+
+
+    RW Dor Bla Har
+52nd    2   6  10
+53rd    3   7  11
+54th 1  4   8  12
+        5   9  13
+
+manual (6)
+textbook (8)
+downloader (1)
+  USB cable (4)
+  display (3)
+  jumper shunt (9)
+  progress bar (2)
+  power cord (5)
+uploader (1)
+  MOSFET (13) (x3)
+    (F-9887-QFY)
+    (Z-4832-PUL
+     N-5065-ALO)
+    (B-4292-LCR)
+  status LED (10)
+    - H-6456-ZXL
+    - L-5065-EBS
+    - L-5065-EBS
+  RS232 adapter (12)
+  EPROM burner (11)
+  battery (7)
+
+
+

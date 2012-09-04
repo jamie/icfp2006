@@ -1,0 +1,27 @@
+Login     Password        Puzzle
+guest     (none)          INTRO
+ftd                       
+gardener                  
+ohmega    bidirectional   CIRCS
+yang      U+262F          BLNCE
+howie     xyzzy           ADVTR
+hmonk     COMEFROM        ADVIS
+bbarker                   
+
+
+Scores:     INTRO  CIRCS  BLNCE  BLACK  BASIC  ANTWO  ADVTR  ADVIS  Total
+Me:          230                                        30
+High:        230   1410   1131   1000    100    400    810    334    5415
+                         (1185)
+
+Publications:
+INTRO.LOG=200@2022|b9b1f975356a4530fd8292f0595ea74 -- log in as guest
+INTRO.MUA=5@2022|78693c4f95fbdd8994a18ba488c7390 -- mail
+INTRO.OUT=5@2022|f7757fac61e2e61e64c968e6a2a1972 -- a.out
+INTRO.UMD=10@2022|15ecd4b6f6b832e5efd36d23997cfec -- umodem
+INTRO.QBC=10@2022|2b64deb9197dd58375a23019b3675aa -- qbasic
+
+ADVTR.INC=5@2022|e186973f9cba838abc0f1c56b3506ff -- incinerate
+ADVTR.CMB=5@2022|f85a0ec0f745d8a9b2016950cad620a -- combine
+ADVTR.KEY=20@2022|03d4da3cb9a3bc52afc58b839861b33 -- use keypad
+

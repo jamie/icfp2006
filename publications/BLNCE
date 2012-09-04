@@ -1,0 +1,17 @@
+yang
+U+262F
+certify stop 00
+certify stop1 00
+certify stop127 00
+certify stop128 00
+certify copymem 00
+certify copyreg 00
+certify swapmem 00
+certify swapreg 00
+certify swapreg2 00
+certify addmem 00
+certify addmem2 00
+certify multmem 00
+certify fillmem 00
+certify clearreg 00
+exit

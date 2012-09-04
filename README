@@ -1,0 +1,5 @@
+ruby: My own ruby implementation, looks correct but being ruby it's damn slow
+
+ocaml: Another contestant released their very fast ocaml solution after the
+       contest ended, unfortunately I don't have any attribution for it.
+
