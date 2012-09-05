@@ -3,4 +3,14 @@ ruby: My own ruby implementation, looks correct but being ruby it's damn slow
 ocaml: Another contestant released their very fast ocaml solution after the
        contest ended, unfortunately I don't have any attribution for it.
 
+go: Learning the basics of the go language by converting my ruby solution
+    to go.
+
 publications: Input scripts to pass to the codex VM for each puzzle.
+
+
+Sandmarks:
+
+ruby19: 5418.17s user 4.94s system 99% cpu 1:30:23.24 total
+ocaml:  459.75s user 0.70s system 99% cpu 7:40.47 total
+go:     
