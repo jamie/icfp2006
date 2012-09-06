@@ -38,12 +38,6 @@ class Um
         @value = platter & 0x01FFFFFF
       end
 
-      if @executions == 962
-        p [opcode, @register[@a], @register[@b], @register[@c]]
-        p @array[4].size
-        break
-      end
-
       self.send(OPERATORS[opcode])
     end
   end
@@ -95,7 +89,6 @@ class Um
   def allocation
     # $b = ([0] * $c).index
     index = @array.length # empty_array_index
-    puts "#{index} <- #{@register[@c]}"
     @array[index] = [0] * @register[@c]
     @register[@b] = index
   end
