@@ -13,4 +13,4 @@ Sandmarks:
 
 ruby19: 5418.17s user 4.94s system 99% cpu 1:30:23.24 total
 ocaml:  459.75s user 0.70s system 99% cpu 7:40.47 total
-go:     
+go:     107.89s user 3.72s system 99% cpu 1:51.64 total
