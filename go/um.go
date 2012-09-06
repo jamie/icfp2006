@@ -37,6 +37,7 @@ type Um struct {
 	register []uint32
 	finger   uint32
 	key      byte
+	count    uint32
 }
 
 func main() {
@@ -50,6 +51,7 @@ func main() {
 	um.array = make([][]uint32, 1)
 	um.array[0] = load_file(args[1]) // load initial program
 	um.register = make([]uint32, 8)
+	um.count = 0
 
 	for {
 		spin(um)
@@ -59,6 +61,7 @@ func main() {
 func spin(machine *Um) {
 	platter := machine.array[0][machine.finger]
 	machine.finger = machine.finger + 1
+	machine.count = machine.count + 1
 
 	opcode := (platter >> 28) & 0xF
 
