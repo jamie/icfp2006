@@ -46,31 +46,28 @@ func main() {
 		os.Exit(1)
 	}
 
-	um := new(Um)
-	um.array = make([][]uint32, 1)
-	um.array[0] = load_file(args[1]) // load initial program
-	um.register = make([]uint32, 8)
+	machine := new(Um)
+	machine.array = make([][]uint32, 1)
+	machine.array[0] = load_file(args[1]) // load initial program
+	machine.register = make([]uint32, 8)
 
 	for {
-		spin(um)
-	}
-}
+		platter := machine.array[0][machine.finger]
+		machine.finger = machine.finger + 1
 
-func spin(machine *Um) {
-	platter := machine.array[0][machine.finger]
-	machine.finger = machine.finger + 1
+		opcode := (platter >> 28) & 0xF
+		if opcode == 7 { break }
 
-	opcode := (platter >> 28) & 0xF
-
-	if opcode != 13 {
-		a := (platter >> 6) & 7
-		b := (platter >> 3) & 7
-		c := platter & 7
-		operators[opcode](machine, a, b, c)
-	} else {
-		z := (platter >> 25) & 7
-		value := platter & 0x01FFFFFF
-		operators[opcode](machine, z, 0, value)
+		if opcode != 13 {
+			a := (platter >> 6) & 7
+			b := (platter >> 3) & 7
+			c := platter & 7
+			operators[opcode](machine, a, b, c)
+		} else {
+			z := (platter >> 25) & 7
+			value := platter & 0x01FFFFFF
+			operators[opcode](machine, z, 0, value)
+		}
 	}
 }
 
