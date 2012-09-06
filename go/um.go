@@ -56,6 +56,24 @@ func main() {
 	}
 }
 
+func spin(machine *Um) {
+	platter := machine.array[0][machine.finger]
+	machine.finger = machine.finger + 1
+
+	opcode := (platter >> 28) & 0xF
+
+	if opcode != 13 {
+		a := (platter >> 6) & 7
+		b := (platter >> 3) & 7
+		c := platter & 7
+		operators[opcode](machine, a, b, c)
+	} else {
+		z := (platter >> 25) & 7
+		value := platter & 0x01FFFFFF
+		operators[opcode](machine, z, 0, value)
+	}
+}
+
 var operators = [14]func(*Um, uint32, uint32, uint32){
 	// 0 conditional move // $a = $b unless $c.zero?
 	func(m *Um, a, b, c uint32) {
@@ -118,22 +136,4 @@ var operators = [14]func(*Um, uint32, uint32, uint32){
 
 	// 13 orthography // $z = value
 	func(m *Um, z, _, value uint32) { m.register[z] = value },
-}
-
-func spin(machine *Um) {
-	platter := machine.array[0][machine.finger]
-	machine.finger = machine.finger + 1
-
-	opcode := (platter >> 28) & 0xF
-
-	if opcode != 13 {
-		a := (platter >> 6) & 7
-		b := (platter >> 3) & 7
-		c := platter & 7
-		operators[opcode](machine, a, b, c)
-	} else {
-		z := (platter >> 25) & 7
-		value := platter & 0x01FFFFFF
-		operators[opcode](machine, z, 0, value)
-	}
 }
