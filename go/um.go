@@ -129,7 +129,9 @@ var operators = [14]func(*Um, uint32, uint32, uint32){
 	// 12 load program // $0 = $b.dup; @finger = $c
 	func(m *Um, a, b, c uint32) {
 		if m.register[b] != 0 {
-			copy(m.array[0], m.array[m.register[b]])
+			dup := make([]uint32, len(m.array[m.register[b]]))
+			copy(dup, m.array[m.register[b]])
+			m.array[0] = dup
 		}
 		m.finger = m.register[c]
 	},
