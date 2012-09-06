@@ -105,9 +105,10 @@ var operators = [14]func(*Um, uint32, uint32, uint32){
 
 	// 8 allocation // $b = ([0] * $c).index
 	func(m *Um, a, b, c uint32) {
-		m.register[b] = uint32(len(m.array))
+		index := uint32(len(m.array))
 		new_array := make([]uint32, m.register[c])
 		m.array = append(m.array, new_array)
+		m.register[b] = index
 	},
 
 	// 9 abandonment // $c = nil
