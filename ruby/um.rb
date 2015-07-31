@@ -139,4 +139,3 @@ end
 if $0 == __FILE__
   Um.new(File.read(ARGV[0] || 'sandmark.umz').unpack("N*")).spin
 end
-
