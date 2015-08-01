@@ -1,16 +1,14 @@
-ruby: My own ruby implementation, looks correct but being ruby it's damn slow
+I originally implemented the Ruby solution, but even with the performance
+improvements from its original ruby1.9 environment to modern ruby2.2, it's
+still very much on the slow side.
 
-ocaml: Another contestant released their very fast ocaml solution after the
-       contest ended, unfortunately I don't have any attribution for it.
+I've since ported the implementation to Go and Rust, poorly, and tried naively
+to optimize them a little bit. Both are crazy fast in comparison (as long as
+you aren't an idiot like me and forget to re-build the Rust binary for
+`--release`), but wrestling with types
 
-go: Learning the basics of the go language by converting my ruby solution
-    to go.
+Sandmarks (2013 MBP, 2.4ghz Core i5):
 
-publications: Input scripts to pass to the codex VM for each puzzle.
-
-
-Sandmarks:
-
-ruby19: 5418.17s user 4.94s system 99% cpu 1:30:23.24 total
-ocaml:  459.75s user 0.70s system 99% cpu 7:40.47 total
-go:     107.89s user 3.72s system 99% cpu 1:51.64 total
+    ruby 2.2: 2898.61s user 12.90s system 99% cpu 48:47.64  total
+    go   1.4:   88.58s user 21.51s system 89% cpu  2:02.62  total
+    rust 1.1:   40.38s user  5.96s system 94% cpu    48.791 total
