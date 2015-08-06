@@ -1,7 +1,7 @@
 class Um
   def initialize(program, key = "")
     @array = [program]
-    @register = [0_u32] * 8
+    @register = Array.new(8, 0_u32)
     @finger = 0_u32
     @platter = 0_u32
     @key = key.split("")
@@ -108,7 +108,7 @@ class Um
     # $b = ([0] * $c).index
     c = @register[@c]
     index = @array.size
-    @array << [0_u32] * c
+    @array << Array.new(c.to_i, 0_u32)
     @register[@b] = index.to_u32
   end
 
