@@ -1,3 +1,50 @@
+filename = "sandmark.umz"
+filename = ARGV[0] if ARGV.size > 0
+program = File.read(filename).unpack("N*")
+
+array = [program]
+register = Array.new(8, 0)
+finger = 0
+platter = 0
+
+loop do
+  platter = array[0][finger]
+  finger += 1
+
+  opcode = (platter >> 28) & 0xF
+
+  a = register[(platter >> 6) & 7]
+  b = register[(platter >> 3) & 7]
+  c = register[platter & 7]
+
+  case opcode
+    # Optimize these first few by calling frequency
+  when 13; register[(platter >> 25) & 7] = platter & 0x01FFFFFF
+  when  3; register[(platter >> 6) & 7] = (b + c)
+  when  6; register[(platter >> 6) & 7] = (0xFFFFFFFF - (b & c))
+  when  1; register[(platter >> 6) & 7] = array[b][c]
+  when 12; array[0] = array[b].dup unless b == 0
+           finger = c
+  when  2; array[a][b] = c
+  when  0; register[(platter >> 6) & 7] = b unless c == 0
+
+  when  4; register[(platter >> 6) & 7] = (b * c)
+  when  5; register[(platter >> 6) & 7] = (b / c)
+  when  7; puts
+           exit(0)
+  when  8; index = array.size
+           array << Array.new(c, 0)
+           register[(platter >> 3) & 7] = val = index
+  when  9; array[c] = []
+  when 10; print c.chr; STDOUT.flush
+  when 11; char = STDIN.getc
+           register[platter & 7] = (char == 10 ? 0xFFFFFFFF : char)
+  end
+end
+
+
+__END__
+
 class Um
 
   OPERATORS = [
