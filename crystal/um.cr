@@ -3,26 +3,24 @@ class Um
     @array = [program]
     @register = [0_u32] * 8
     @finger = 0_u32
+    @platter = 0_u32
     @key = key.split("")
-    @executions = 0
 
     @a = @b = @c = @z = @value = 0_u32
   end
 
   def spin(stopchar = nil)
     loop do
-      platter = @array[0][@finger] as UInt32
+      @platter = @array[0][@finger]
       @finger += 1
-      @executions += 1
 
-      opcode = (platter >> 28) & 0xF
       if opcode != 13
-        @a = (platter >> 6) & 7
-        @b = (platter >> 3) & 7
-        @c = (platter     ) & 7
+        @a = (@platter >> 6) & 7
+        @b = (@platter >> 3) & 7
+        @c = (@platter     ) & 7
       else
-        @z = (platter >> 25) & 7
-        @value = platter & 0x01FFFFFF
+        @z = (@platter >> 25) & 7
+        @value = @platter & 0x01FFFFFF
       end
 
       case opcode
@@ -43,6 +41,11 @@ class Um
       end
     end
   end
+
+  def opcode
+    (@platter >> 28) & 0xF
+  end
+
 
   def conditional_move
     # $a = $b unless $c.zero?
