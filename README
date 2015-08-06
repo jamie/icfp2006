@@ -9,6 +9,7 @@ you aren't an idiot like me and forget to re-build the Rust binary for
 
 Sandmarks (2013 MBP, 2.4ghz Core i5):
 
-    ruby 2.2: 2898.61s user 12.90s system 99% cpu 48:47.64  total
-    go   1.4:   88.58s user 21.51s system 89% cpu  2:02.62  total
-    rust 1.1:   40.38s user  5.96s system 94% cpu    48.791 total
+    ruby    2.2:   2898.61s user 12.90s system 99%  cpu 48:47.64  total
+    crystal 0.7.5:  106.13s user 15.54s system 134% cpu  1:30.49  total
+    go      1.4:     82.22s user 12.92s system 96%  cpu  1:39.10  total
+    rust    1.1:     40.38s user  5.96s system 94%  cpu    48.791 total

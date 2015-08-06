@@ -1,14 +1,12 @@
 class Um
   def initialize(program, key = "")
-    @array = [] of Array
+    @array = [program]
     @register = [0_u32] * 8
     @finger = 0_u32
     @key = key.split("")
     @executions = 0
 
     @a = @b = @c = @z = @value = 0_u32
-
-    @array << program
   end
 
   def spin(stopchar = nil)
@@ -65,7 +63,7 @@ class Um
     a = @register[@a]
     b = @register[@b]
     c = @register[@c]
-    #@array[a][b] = c
+    @array[a][b] = c
   end
 
   def addition
@@ -148,11 +146,10 @@ filename = "sandmark.umz"
 filename = ARGV[0] if ARGV.size > 0
 data = [] of UInt32
 File.open(filename, "rb") do |file|
-  (file.size/4).times do
-    a = (file.read_byte || 0).to_u32
-    b = (file.read_byte || 0).to_u32
-    c = (file.read_byte || 0).to_u32
-    d = (file.read_byte || 0).to_u32
+  slice = Slice(UInt8).new(file.size.to_i)
+  file.read(slice)
+  (file.size/4).times do |w|
+    a, b, c, d = slice[(w.to_i32 * 4), 4].map{|v| v.to_u32}
     data << ((a << 24) + (b << 16) + (c << 8) + d)
   end
 end
