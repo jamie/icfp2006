@@ -1,11 +1,23 @@
 I originally implemented the Ruby solution, but even with the performance
 improvements from its original ruby1.9 environment to modern ruby2.2, it's
-still very much on the slow side.
+still very much on the slow side. It's since been ported a few times:
 
-I've since ported the implementation to Go and Rust, poorly, and tried naively
-to optimize them a little bit. Both are crazy fast in comparison (as long as
-you aren't an idiot like me and forget to re-build the Rust binary for
-`--release`), but wrestling with types
+Go is reasonably terse, and lets me run off of an array of function pointers
+very easily. Working with go, on the other hand, can be very annoying while
+learning the API - specifically unused variables/requires are considered build
+errors, which makes it very hard to use puts-debugging and toggling code as
+comments as a quick way to explore data as it passes through the system more
+obnoxious than it needs to be.
+
+Rust I was impressed with. Nice quick build system, clean syntax, and pattern
+matching were all to the good. Had quite a time wrapping my head around all the
+various type conversions necessary to get things running, especially converting
+everything to usize before I can use it in an array index. Other than that, it's
+by far the fastest implementation I've run so far (as long as one remembers to
+compile with --release).
+
+Crystal was a very impressive surprise for me - it feels like Ruby with type
+annotations, but runs 30x faster.
 
 Sandmarks (2013 MBP, 2.4ghz Core i5):
 
