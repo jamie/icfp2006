@@ -25,12 +25,10 @@ def spin(program)
     a = register[(platter >> 6) & 7]
     b = register[(platter >> 3) & 7]
     c = register[platter & 7]
-    z = (platter >> 25) & 7
-    value = platter & 0x01FFFFFF
 
     case opcode
       # Optimize these first few by calling frequency
-    when 13; register[z] = value
+    when 13; register[(platter >> 25) & 7] = platter & 0x01FFFFFF
     when  3; register[(platter >> 6) & 7] = (b.to_u64 + c.to_u64).to_u32
     when  6; register[(platter >> 6) & 7] = (0xFFFFFFFF - (b & c)).to_u32
     when  1; register[(platter >> 6) & 7] = array[b][c] as UInt32
