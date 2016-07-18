@@ -163,10 +163,6 @@ defmodule Um do
   defp exec(program, <<10::size(4), _::size(19), _::size(3), _::size(3), c::size(3)>>) do
     rc = program.registers[c]
     IO.chardata_to_string([rc]) |> IO.write
-    if IO.chardata_to_string([rc]) == "/" do
-      IO.puts ""
-      System.halt
-    end
     program
   end
 
