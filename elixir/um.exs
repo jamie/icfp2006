@@ -1,5 +1,11 @@
 use Bitwise
 
+defmodule Tuple do
+  def replace_at(tuple, index, value) do
+    tuple |> Tuple.delete_at(index) |> Tuple.insert_at(index, value)
+  end
+end
+
 defmodule Um do
   defmodule Program do
     defstruct [
@@ -11,7 +17,7 @@ defmodule Um do
     def load(binary) do
       words = words_from_binary(binary)
       %Um.Program{
-        platters: [words],
+        platters: {words},
         registers: %{0=>0, 1=>0, 2=>0, 3=>0, 4=>0, 5=>0, 6=>0, 7=>0},
         finger: 0
       }
@@ -33,32 +39,32 @@ defmodule Um do
     end
 
     def opcode(program) do
-      [platter | _] = program.platters
-      elem(platter, program.finger)
+      program.platters |> elem(0) |> elem(program.finger)
     end
 
     def allocate(program, size, register) do
       platter = Tuple.duplicate(<<0,0,0,0>>, size)
-      id = Enum.count(program.platters)
-      %Program{program | platters: program.platters ++ [platter]} |> set_register(register, id)
+      id = program.platters |> tuple_size
+      %Program{program | platters: Tuple.append(program.platters, platter)} |> set_register(register, id)
     end
 
-    def deallocate(program, platter_id) do
-      %Program{program | platters: List.replace_at(program.platters, platter_id, nil)}
+    def deallocate(program, _platter_id) do
+      #%Program{program | platters: Tuple.replace_at(program.platters, platter_id, nil)}
+      program
     end
 
     def read_platter(program, platter_id, word_id) do
-      program.platters |> Enum.at(platter_id) |> elem(word_id)
+      program.platters |> elem(platter_id) |> elem(word_id)
     end
 
     def write_platter(program, platter_id, word_id, value) do
-      platter = program.platters |> Enum.at(platter_id) |> put_elem(word_id, value)
-      %Program{program | platters: List.replace_at(program.platters, platter_id, platter)}
+      platter = program.platters |> elem(platter_id) |> put_elem(word_id, value)
+      %Program{program | platters: Tuple.replace_at(program.platters, platter_id, platter)}
     end
 
     def load_platter(program, platter_id) do
-      platter = program.platters |> Enum.at(platter_id)
-      %Program{program | platters: List.replace_at(program.platters, 0, platter)}
+      platter = program.platters |> elem(platter_id)
+      %Program{program | platters: Tuple.replace_at(program.platters, 0, platter)}
     end
 
     def set_register(program, register, value) do
@@ -157,6 +163,10 @@ defmodule Um do
   defp exec(program, <<10::size(4), _::size(19), _::size(3), _::size(3), c::size(3)>>) do
     rc = program.registers[c]
     IO.chardata_to_string([rc]) |> IO.write
+    if IO.chardata_to_string([rc]) == "/" do
+      IO.puts ""
+      System.halt
+    end
     program
   end
 
