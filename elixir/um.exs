@@ -24,20 +24,21 @@ defmodule Um do
       %Program{program | finger: target}
     end
 
-    defp words_from_binary(<<>>), do: []
-    defp words_from_binary(<<word :: size(32), rest::binary>>) do
+    defp words_from_binary(words, list \\ {})
+    defp words_from_binary(<<>>, list), do: list
+    defp words_from_binary(<<word :: size(32), rest::binary>>, list) do
       bits = <<word :: size(32)>>
-      [bits | words_from_binary(rest)]
+      list = Tuple.append(list, bits)
+      words_from_binary(rest, list)
     end
 
     def opcode(program) do
       [platter | _] = program.platters
-      platter |> Enum.at(program.finger)
+      elem(platter, program.finger)
     end
 
     def allocate(program, size, register) do
-      IO.puts "Allocating #{size}"
-      platter = List.duplicate(<<0,0,0,0>>, size)
+      platter = Tuple.duplicate(<<0,0,0,0>>, size)
       id = Enum.count(program.platters)
       %Program{program | platters: program.platters ++ [platter]} |> set_register(register, id)
     end
@@ -47,11 +48,11 @@ defmodule Um do
     end
 
     def read_platter(program, platter_id, word_id) do
-      program.platters |> Enum.at(platter_id) |> Enum.at(word_id)
+      program.platters |> Enum.at(platter_id) |> elem(word_id)
     end
 
     def write_platter(program, platter_id, word_id, value) do
-      platter = program.platters |> Enum.at(platter_id) |> List.replace_at(word_id, value)
+      platter = program.platters |> Enum.at(platter_id) |> put_elem(word_id, value)
       %Program{program | platters: List.replace_at(program.platters, platter_id, platter)}
     end
 
@@ -78,7 +79,8 @@ defmodule Um do
     ops = %{0=>'cmov', 1=>'read', 2=>'stor',
             3=>'add', 4=>'mul', 5=>'div', 6=>'nand',
             7=>'hlt', 8=>'alloc', 9=>'dealloc',
-            10=>'putc', 11=>'getc', 12=>'jmp', 13=>'load'}
+            10=>'putc', 11=>'getc', 12=>'jmp', 13=>'load'
+    }
     <<operator::size(4), operands::size(28)>> = opcode
     if operator == 13 do
       <<a::size(3), val::size(25)>> = <<operands::size(28)>>
@@ -192,12 +194,6 @@ defmodule Um do
   # A <- val
   defp exec(program, <<13::size(4), a::size(3), val::size(25)>>) do
     program |> Program.set_register(a, val)
-  end
-
-  defp exec(_, opcode) do
-    <<operator::size(4), _::size(19), a::size(3), b::size(3), c::size(3)>> = opcode
-    [operator, a, b, c] |> IO.inspect
-    System.halt
   end
 
   defp clamp(int) do
