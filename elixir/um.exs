@@ -75,25 +75,6 @@ defmodule Um do
             |> spin
   end
 
-  defp execp(program, opcode) do
-    ops = %{0=>'cmov', 1=>'read', 2=>'stor',
-            3=>'add', 4=>'mul', 5=>'div', 6=>'nand',
-            7=>'hlt', 8=>'alloc', 9=>'dealloc',
-            10=>'putc', 11=>'getc', 12=>'jmp', 13=>'load'
-    }
-    <<operator::size(4), operands::size(28)>> = opcode
-    if operator == 13 do
-      <<a::size(3), val::size(25)>> = <<operands::size(28)>>
-      [ops[operator], a, val] |> IO.inspect
-    else
-      <<_::size(19), a::size(3), b::size(3), c::size(3)>> = <<operands::size(28)>>
-      [ops[operator], a, b, c] |> IO.inspect
-    end
-    prog = exec(program, opcode)
-    prog.registers |> IO.inspect
-    prog
-  end
-
   # A <- B unless C.zero?
   defp exec(program, <<0::size(4), _::size(19), a::size(3), b::size(3), c::size(3)>>) do
     rb = program.registers[b]
